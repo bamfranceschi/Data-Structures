@@ -44,7 +44,7 @@ return elements in Last In First Out order.
 
 import sys
 
-sys.path.append("../singly_linked_list.py")
+sys.path.append("../singly_linked_list/singly_linked_list.py")
 from singly_linked_list import LinkedList
 
 
