@@ -1,57 +1,16 @@
-"""
-A stack is a data structure whose primary purpose is to store and
-return elements in Last In First Out order. 
-
-1. Implement the Stack class using an array as the underlying storage structure.
-   Make sure the Stack tests pass.
-2. Re-implement the Stack class, this time using the linked list implementation
-   as the underlying storage structure.
-   Make sure the Stack tests pass.
-3. What is the difference between using an array vs. a linked list when 
-   implementing a Stack?
-"""
-
-
-# class Stack:
-#     def __init__(self):
-#         self.size = 0
-#         self.storage = []
-
-#     def __str__(self):
-#         return f"{self.storage}"
-
-#     def __len__(self):
-#         return len(self.storage)
-
-#     def push(self, value):
-#         self.storage.append(value)
-#         self.size = len(self.storage)
-
-#     def pop(self):
-#         if len(self.storage) == 0:
-#             return None
-#         return self.storage.pop()
-
-
-# array_stack = Stack()
-# print(array_stack, array_stack.size)
-
-# array_stack.push(4)
-# print(array_stack, array_stack.size)
-
-# array_stack.pop()
-# print(array_stack, array_stack.size)
-
 class Node:
     def __init__(self, value=None, next_node=None):
         # the value at this linked list node
         self.value = value
         # reference to the next node in the list
         self.next_node = next_node​
+
     def get_value(self):
         return self.value
+
     def get_next(self):
         return self.next_node
+
     def set_next(self, new_next):
         # set this node's next_node reference to the passed in node
         self.next_node = new_next
@@ -62,7 +21,7 @@ class LinkedList:
         self.head = None
         # reference to the tail of the list
         self.tail = None
-​
+        
     def add_to_tail(self, value):
         # wrap the input value in a node
         new_node = Node(value, None)
@@ -109,8 +68,10 @@ class LinkedList:
             return value
         
         current = self.head
+​
         while current.get_next() is not self.tail:
             current = current.get_next()
+​
         value = self.tail.get_value()
         self.tail = current
         self.tail.set_next(None)
@@ -159,20 +120,5 @@ class LinkedList:
         return max_value
 
 
-class Stack:
-    def __init__(self):
-        self.size = 0
-        self.storage = LinkedList()
 
-    def __len__(self):
-        return self.size
 
-    def push(self, value):
-        self.storage.add_to_tail(value)
-        self.size += 1
-
-    def pop(self):
-        if self.size == 0:
-            return None
-        self.size -= 1
-        return self.storage.remove_tail()

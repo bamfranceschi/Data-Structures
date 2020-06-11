@@ -14,40 +14,36 @@ Stretch: What if you could only use instances of your Stack class to implement t
          What would that look like? How many Stacks would you need? Try it!
 """
 
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = []
 
-class Queue:
-    def __init__(self):
-        self.size = 0
-        self.storage = []
+#     def __len__(self):
+#         return len(self.storage)
 
-    def __len__(self):
-        return len(self.storage)
+#     def enqueue(self, value):
+#         self.storage.append(value)
+#         self.size = len(self.storage)
 
-    def enqueue(self, value):
-        self.storage.append(value)
-        self.size = len(self.storage)
-
-    def dequeue(self):
-        if self.size == 0:
-            return None
-        else:
-            value = self.storage.pop(0)
-            self.size = len(self.storage)
-            return value
+#     def dequeue(self):
+#         if self.size == 0:
+#             return None
+#         else:
+#             value = self.storage.pop(0)
+#             self.size = len(self.storage)
+#             return value
 
 class Node:
     def __init__(self, value=None, next_node=None):
         # the value at this linked list node
         self.value = value
         # reference to the next node in the list
-        self.next_node = next_node
-​
+        self.next_node = next_node​
     def get_value(self):
         return self.value
-​
     def get_next(self):
         return self.next_node
-​
     def set_next(self, new_next):
         # set this node's next_node reference to the passed in node
         self.next_node = new_next
@@ -58,7 +54,7 @@ class LinkedList:
         self.head = None
         # reference to the tail of the list
         self.tail = None
-​
+
     def add_to_tail(self, value):
         # wrap the input value in a node
         new_node = Node(value, None)
@@ -73,7 +69,7 @@ class LinkedList:
             self.tail.set_next(new_node)
             # set the list's tail reference to the new node
             self.tail = new_node
-​
+
     def remove_head(self):
         # return None if there is no head (i.e. the list is empty)
         if not self.head:
@@ -93,7 +89,7 @@ class LinkedList:
         # set the head reference to the current head's next node in the list
         self.head = self.head.get_next()
         return value
-​
+
     def remove_tail(self):
         if not self.head:
             return None
@@ -105,19 +101,17 @@ class LinkedList:
             return value
         
         current = self.head
-​
         while current.get_next() is not self.tail:
             current = current.get_next()
-​
         value = self.tail.get_value()
         self.tail = current
         self.tail.set_next(None)
         return value
-​
+
+
     def contains(self, value):
         if not self.head:
             return False
-​
         # Recursive solution
         # def search(node):
         #   if node.get_value() == value:
@@ -138,7 +132,7 @@ class LinkedList:
             current = current.get_next()
         # if we've gotten here, then the target node isn't in our list
         return False
-​
+        
     def get_max(self):
         if not self.head:
             return None
@@ -155,8 +149,6 @@ class LinkedList:
             # update the current node to the next node in the list
             current = current.get_next()
         return max_value
-
-
 
 
 class Queue:

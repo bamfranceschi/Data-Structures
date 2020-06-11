@@ -10,6 +10,9 @@ This part of the project comprises two days:
    on the BSTNode class.
 """
 
+from queue import Queue
+from stack import Stack
+
 
 class BSTNode:
     def __init__(self, value):
@@ -62,14 +65,18 @@ class BSTNode:
 
         if not self.right:
             max_value = self.value
-            print(max_value)
+
             return max_value
 
         elif self.value <= self.right.value:
             max_value = self.right.get_max()
-            print(max_value)
 
             return max_value
+
+        # if self.right is None:
+        #     return self.value
+        # else:
+        #     return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
@@ -85,17 +92,60 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # lowest number is always the furthest to the left
+
+        # base case?
+        if node is None:
+            return
+
+        if node.left:
+            node.left.in_order_print(node.left)
+
+        print(node.value)
+
+        if node.right:
+            node.right.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+
+        cue = Queue()
+
+        cue.enqueue(node)
+
+        while cue.__len__() > 0:
+
+            current = cue.dequeue()
+
+            print(current.value)
+
+            if current.left:
+                cue.enqueue(current.left)
+
+            if current.right:
+                cue.enqueue(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+
+        # we'll need a stack class here
+        st = Stack()
+        # start your stack with the root node
+        st.push(node)
+        # while loop
+        while st.__len__() > 0:
+            # checks stack size
+            current = st.pop()
+            # pointer variable
+            print(current.value)
+
+            if current.left:
+                st.push(current.left)
+
+            if current.right:
+                st.push(current.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
